@@ -4,7 +4,9 @@ import apiHelperExample.pages.HomePage;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Test;
 
+import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -29,6 +31,10 @@ public class SampleJUnitTest extends JUnitTestBase {
                 .when().get()
                 .then().log().everything()
                 .extract().as(Repos.class);
-        System.out.println();
+
+        LinkedList<String> repoNames = repos.getItems()
+                .stream()
+                .map(RepoItem::getFullName)
+                .collect(Collectors.toCollection(LinkedList::new));
     }
 }
