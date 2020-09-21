@@ -23,8 +23,8 @@ public class HomePage extends Page {
   }
 
   public RepositoriesPage searchForRepositories(String value) {
-    searchField.sendKeys(value);
-    searchField.sendKeys(Keys.ENTER);
+    waitForElement(searchField).sendKeys(value);
+    waitForElement(searchField).sendKeys(Keys.ENTER);
     return new RepositoriesPage(driver);
   }
 }

@@ -1,6 +1,7 @@
 package apiHelperExample;
 
 import java.net.URL;
+import java.util.concurrent.TimeUnit;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.restassured.RestAssured;
@@ -34,6 +35,7 @@ public class JUnitTestBase {
     public void initDriver() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     }
 
     @AfterEach
