@@ -16,9 +16,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class SampleJUnitTest extends JUnitTestBase {
 
     private HomePage homepage;
+    private RepositoriesApiHelper repositoriesApiHelper;
 
     @Test
     public void testRepositoriesListSearch() {
+        repositoriesApiHelper = new RepositoriesApiHelper();
         String searchQuery = "healenium";
         homepage = new HomePage(driver);
         driver.get(baseUrl);
@@ -26,19 +28,7 @@ public class SampleJUnitTest extends JUnitTestBase {
                 .getRepoListNamesFromPage();
         assertTrue(actualRepositoriesList.stream().allMatch(item -> item.contains(searchQuery)),
                 String.format("List Elements: [%s] does not contains text [%s] ", actualRepositoriesList, searchQuery));
-
-        Repos repos = given().log().everything()
-                .contentType(ContentType.JSON)
-                .queryParam("q", searchQuery)
-                .when().get()
-                .then().log().everything()
-                .extract().as(Repos.class);
-
-        LinkedList<String> repoNames = repos.getItems()
-                .stream()
-                .map(RepoItem::getFullName)
-                .collect(Collectors.toCollection(LinkedList::new));
-
-        assertThat(actualRepositoriesList.toArray(), arrayContainingInAnyOrder(repoNames.toArray()));
+        List<String> expectedRepositoriesList = repositoriesApiHelper.getRepoNamesForSearchQuery(searchQuery);
+        assertThat(actualRepositoriesList.toArray(), arrayContainingInAnyOrder(expectedRepositoriesList.toArray()));
     }
 }
