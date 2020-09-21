@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.arrayContainingInAnyOrder;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SampleJUnitTest extends JUnitTestBase {
@@ -36,5 +38,7 @@ public class SampleJUnitTest extends JUnitTestBase {
                 .stream()
                 .map(RepoItem::getFullName)
                 .collect(Collectors.toCollection(LinkedList::new));
+
+        assertThat(actualRepositoriesList.toArray(), arrayContainingInAnyOrder(repoNames.toArray()));
     }
 }
