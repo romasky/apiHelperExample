@@ -45,6 +45,8 @@ public class JUnitTestBase {
         caps.setVersion("85.0");
         caps.setCapability("enableVNC", true);
         caps.setCapability("screenResolution", "1280x1024");
+        caps.setCapability("enableVideo", true);
+        caps.setCapability("enableLog", true);
 
         driver = new RemoteWebDriver(new URL(slenoidURL), caps);
 
