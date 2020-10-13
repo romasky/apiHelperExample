@@ -1,6 +1,7 @@
 package apiHelperExample.pages;
 
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -21,11 +22,12 @@ public class HomePage extends Page {
     super(webDriver);
   }
 
-
+  @Step("Открыта страница {baseUrl}")
   public void open(String baseUrl) {
     driver.get(baseUrl);
   }
 
+  @Step("Ищем репозитории по ключевому слову {value}")
   public RepositoriesPage searchForRepositories(String value) {
     waitForElement(searchField).sendKeys(value);
     waitForElement(searchField).sendKeys(Keys.ENTER);

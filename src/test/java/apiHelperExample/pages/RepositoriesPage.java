@@ -21,6 +21,7 @@ public class RepositoriesPage extends Page {
         return repoNames;
     }
 
+    @Step("Получили значения найденных репозиториев со страницы")
     public LinkedList<String> getRepoListNamesFromPage() {
         return getRepoNames().stream()
                 .map(item -> waitForElement(item).getText().trim().toLowerCase())
