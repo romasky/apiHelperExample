@@ -1,6 +1,10 @@
 package apiHelperExample;
 
 import apiHelperExample.pages.HomePage;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.parallel.Execution;
 import org.junit.jupiter.api.parallel.ExecutionMode;
@@ -18,6 +22,10 @@ public class SampleJUnitTest extends JUnitTestBase {
     private RepositoriesApiHelper repositoriesApiHelper;
 
     @Test
+    @Epic("GitHub")
+    @Feature("Поиск репозиториев")
+    @Story("Список найденных репозиториев содержит ключевое слово")
+    @Description("Тест проверяет, что список найденных репозиториев содержит ключевое слово")
     public void testRepositoriesListSearch() {
         repositoriesApiHelper = new RepositoriesApiHelper();
         String searchQuery = "test2code";
@@ -30,6 +38,10 @@ public class SampleJUnitTest extends JUnitTestBase {
     }
 
     @Test
+    @Epic("GitHub")
+    @Feature("Поиск репозиториев")
+    @Story("Количество найденных репозиториев равно ожидаемому значению")
+    @Description("Тест проверяет, что количество найденных репозиториев равно ожидаемому результату")
     public void testRepositoriesListSearch1() {
         repositoriesApiHelper = new RepositoriesApiHelper();
         String searchQuery = "healenium";

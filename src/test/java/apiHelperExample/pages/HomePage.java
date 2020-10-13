@@ -21,6 +21,7 @@ public class HomePage extends Page {
     super(webDriver);
   }
 
+
   public void open(String baseUrl) {
     driver.get(baseUrl);
   }
