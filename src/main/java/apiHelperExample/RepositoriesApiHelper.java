@@ -1,5 +1,6 @@
 package apiHelperExample;
 
+
 import io.restassured.http.ContentType;
 
 import java.util.LinkedList;
@@ -18,6 +19,7 @@ public class RepositoriesApiHelper {
                 .then().log().everything()
                 .extract().as(Repos.class);
     }
+
 
     public List<String> getRepoNamesForSearchQuery(String searchQuery) {
         Repos repos = getReposBySearchQuery(searchQuery);

@@ -1,18 +1,13 @@
 package apiHelperExample;
 
 import apiHelperExample.pages.HomePage;
-import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.parallel.Execution;
 import org.junit.jupiter.api.parallel.ExecutionMode;
 
-import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import static io.restassured.RestAssured.given;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.arrayContainingInAnyOrder;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -25,14 +20,13 @@ public class SampleJUnitTest extends JUnitTestBase {
     @Test
     public void testRepositoriesListSearch() {
         repositoriesApiHelper = new RepositoriesApiHelper();
-        String searchQuery = "healenium";
+        String searchQuery = "test2code";
         homepage = new HomePage(driver);
-        driver.get(baseUrl);
+        homepage.open(baseUrl);
         List<String> actualRepositoriesList = homepage.searchForRepositories(searchQuery)
                 .getRepoListNamesFromPage();
-        List<String> expectedRepositoriesList = repositoriesApiHelper.getRepoNamesForSearchQuery(searchQuery);
-        assertThat(actualRepositoriesList.toArray(), arrayContainingInAnyOrder(expectedRepositoriesList.toArray()));
-
+        assertTrue(actualRepositoriesList.stream().allMatch(item -> item.contains(searchQuery)),
+                String.format("List Elements: [%s] does not contains text [%s] ", actualRepositoriesList, searchQuery));
     }
 
     @Test
@@ -40,7 +34,7 @@ public class SampleJUnitTest extends JUnitTestBase {
         repositoriesApiHelper = new RepositoriesApiHelper();
         String searchQuery = "healenium";
         homepage = new HomePage(driver);
-        driver.get(baseUrl);
+        homepage.open(baseUrl);
         List<String> actualRepositoriesList = homepage.searchForRepositories(searchQuery)
                 .getRepoListNamesFromPage();
         assertThat(actualRepositoriesList.size(), equalTo(9));

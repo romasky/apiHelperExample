@@ -1,10 +1,9 @@
 package apiHelperExample.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -24,7 +23,7 @@ public class RepositoriesPage extends Page {
 
     public LinkedList<String> getRepoListNamesFromPage() {
         return getRepoNames().stream()
-                .map(item -> waitForElement(item).getText().trim())
+                .map(item -> waitForElement(item).getText().trim().toLowerCase())
                 .collect(Collectors.toCollection(LinkedList::new));
     }
 }
