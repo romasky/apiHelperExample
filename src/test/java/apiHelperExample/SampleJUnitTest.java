@@ -49,6 +49,6 @@ public class SampleJUnitTest extends JUnitTestBase {
         homepage.open(baseUrl);
         List<String> actualRepositoriesList = homepage.searchForRepositories(searchQuery)
                 .getRepoListNamesFromPage();
-        assertThat(actualRepositoriesList.size(), equalTo(9));
+        assertThat(actualRepositoriesList.size(), equalTo(10));
     }
 }

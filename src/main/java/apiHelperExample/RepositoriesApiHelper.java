@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 import static io.restassured.RestAssured.given;
 
+
 public class RepositoriesApiHelper {
 
     public Repos getReposBySearchQuery(String searchQuery) {
@@ -25,7 +26,7 @@ public class RepositoriesApiHelper {
         Repos repos = getReposBySearchQuery(searchQuery);
         return repos.getItems()
                 .stream()
-                .map(RepoItem::getFullName)
+                 .map(RepoItem::getFullName)
                 .collect(Collectors.toCollection(LinkedList::new));
     }
 }

@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class RepositoriesPage extends Page {
-    @FindBy(css = ".repo-list-item .f4.text-normal")
+    @FindBy(xpath = "//a[@href]/span[contains(@class, 'search')]")
     public List<WebElement> repoNames;
 
     public RepositoriesPage(WebDriver webDriver) {

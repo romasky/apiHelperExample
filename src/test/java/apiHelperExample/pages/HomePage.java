@@ -17,9 +17,16 @@ import static java.lang.String.format;
  */
 public class HomePage extends Page {
 
-    @FindBy(css = ".header-search-input")
+    @FindBy(xpath = "//span[contains(text(), 'Search')]")
+    @CacheLookup
+    public WebElement searchFieldFirstClick;
+
+    @FindBy(xpath = "//input[@id='query-builder-test']")
     @CacheLookup
     public WebElement searchField;
+
+
+    //span[contains(text(), 'Search')]
 
     public HomePage(WebDriver webDriver) {
         super(webDriver);
@@ -33,6 +40,7 @@ public class HomePage extends Page {
 
     @Step("Ищем репозитории по ключевому слову {value}")
     public RepositoriesPage searchForRepositories(String value) {
+        waitForElement(searchFieldFirstClick).click();
         waitForElement(searchField).sendKeys(value);
         waitForElement(searchField).sendKeys(Keys.ENTER);
         Allure.addAttachment(format("Найденные репозитории по ключевому слову ", value), new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));

@@ -6,6 +6,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
+
 /**
  * Abstract class representation of a Page in the UI. Page object pattern
  */
@@ -25,7 +27,7 @@ public abstract class Page {
 
 
   protected WebElement waitForElement(WebElement element) {
-    return new WebDriverWait(driver, 10)
+    return new WebDriverWait(driver, Duration.ofSeconds(10))
             .until(ExpectedConditions.visibilityOf(element));
   }
 
