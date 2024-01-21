@@ -26,7 +26,6 @@ public class HomePage extends Page {
     public WebElement searchField;
 
 
-    //span[contains(text(), 'Search')]
 
     public HomePage(WebDriver webDriver) {
         super(webDriver);
