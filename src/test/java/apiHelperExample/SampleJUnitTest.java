@@ -36,7 +36,6 @@ public class SampleJUnitTest extends JUnitTestBase {
         homepage = new HomePage(driver);
         homepage.open(baseUrl);
         RepositoriesPage repa = homepage.searchForRepositories(searchQuery);
-        Thread.sleep(1000);
         List<String> actualRepositoriesList = repa.getRepoListNamesFromPage();
 
         System.out.println(actualRepositoriesList);
