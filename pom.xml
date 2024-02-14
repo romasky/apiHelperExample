@@ -115,9 +115,9 @@
             <include>**/*Test.java</include>
           </includes>
           <systemPropertyVariables>
-            <application.properties>/application.properties</application.properties>
-            <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
-          </systemPropertyVariables>
+          <application.properties>/application.properties</application.properties>
+          <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
+        </systemPropertyVariables>
         </configuration>
         <dependencies>
           <dependency>
