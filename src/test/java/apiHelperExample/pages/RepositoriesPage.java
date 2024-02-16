@@ -20,6 +20,7 @@ public class RepositoriesPage extends Page {
         super(webDriver);
     }
 
+    @Step("Получили значения найденных репозиториев со страницы")
     public LinkedList<String> getRepoListNamesFromPage() {
         LinkedList<String> repoNamesList = new LinkedList<>();
 
